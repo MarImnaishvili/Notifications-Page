@@ -1,24 +1,11 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 
-function MainContent({
-  id,
-  userName,
-  profilePic,
-  action,
-  groupName,
-  time,
-  isRead,
-  post,
-  userPicture,
-  text,
-  notifications,
-  setNotifications,
-}) {
+function MainContent({ notif, notifications, setNotifications }) {
   const handleIsRead = () => {
     const newNotifications = notifications.map((currentNot) => {
-      console.log(id);
-      if (id == currentNot.id) {
+      console.log(notif.id);
+      if (notif.id == currentNot.id) {
         return { ...currentNot, isRead: true };
       }
       return currentNot;
@@ -27,21 +14,29 @@ function MainContent({
   };
 
   return (
-    <NotificationSection isread={isRead} onClick={() => handleIsRead()}>
-      <img className="profilePic" src={profilePic} alt="contact picture"></img>
+    <NotificationSection isread={notif.isRead} onClick={() => handleIsRead()}>
+      <img
+        className="profilePic"
+        src={notif.profilePic}
+        alt="contact picture"
+      ></img>
       <div className="wrapper">
         <InfoContainer>
-          <span className="userName">{userName}</span>&ensp;
-          <span className="action">{action}</span>&ensp;
-          <span className="post">{post}</span>&ensp;
-          <span className="groupName">{groupName}</span>&ensp;
-          {!isRead ? <div className="markAsRead"></div> : null}
+          <span className="userName">{notif.userName}</span>&ensp;
+          <span className="action">{notif.action}</span>&ensp;
+          <span className="post">{notif.post}</span>&ensp;
+          <span className="groupName">{notif.groupName}</span>&ensp;
+          {!notif.isRead ? <div className="markAsRead"></div> : null}
         </InfoContainer>
-        <span className="time">{time}</span>
-        {text ? <TextContainer>{text}</TextContainer> : null}
+        <span className="time">{notif.time}</span>
+        {notif.text ? <TextContainer>{notif.text}</TextContainer> : null}
       </div>
-      {userPicture ? (
-        <img className="userPicture" src={userPicture} alt="user picture"></img>
+      {notif.userPicture ? (
+        <img
+          className="userPicture"
+          src={notif.userPicture}
+          alt="user picture"
+        ></img>
       ) : null}
     </NotificationSection>
   );

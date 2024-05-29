@@ -11,7 +11,6 @@ function App() {
   };
 
   let unread = notifications.filter((obj) => obj.isRead == false).length;
-  console.log(unread);
 
   return (
     <MainContainer>
@@ -25,19 +24,10 @@ function App() {
         <button onClick={markAllAsRead}>Mark all as read</button>
       </MainHeader>
       <ListContainer>
-        {notifications.map((not) => (
+        {notifications.map((notif) => (
           <MainContent
-            key={not.id}
-            id={not.id}
-            userName={not.userName}
-            profilePic={not.profilePic}
-            action={not.action}
-            groupName={not.groupName}
-            time={not.time}
-            isRead={not.isRead}
-            post={not.post}
-            userPicture={not.userPicture}
-            text={not.text}
+            key={notif.id}
+            notif={notif}
             notifications={notifications}
             setNotifications={setNotifications}
           />
