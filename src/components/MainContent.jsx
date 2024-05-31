@@ -14,7 +14,10 @@ function MainContent({ notif, notifications, setNotifications }) {
   };
 
   return (
-    <NotificationSection isread={notif.isRead} onClick={() => handleIsRead()}>
+    <NotificationSection
+      isread={notif.isRead.toString()}
+      onClick={() => handleIsRead()}
+    >
       <img
         className="profilePic"
         src={notif.profilePic}
